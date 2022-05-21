@@ -1,43 +1,57 @@
-var las_position_of_x, last_position_of_y;
-color ="blank";
-width_of_line = 2;
+// Create a reference for the canvas
 
-canvas = document.getElementById('myCanvas');
-ctx = canvas.getContext("2d");
+img_width = 300;
+img_height = 100;
 
-var width = screen.width;
-new_width = screen.width - 70;
-new_height = screen.height - 300;
-    if(width < 992)
-    {
-    document.getElementById("myCanvas").width = new_width;
-    document.getElementById("myCanvas").height = new_height;
-    document.body.style.overflow = "hidden";
-    }
+var img_image;
 
-    canvas.addEventlistener("touchstart", my_touchstart);
+img_x = 100;
+img_y = 100;
 
-    function my_touchstart(e)
-    {
-        console.log("my_touchstart");
+function add() {
+	img_imgTag = new Image(); //defining a variable with a new image
+	img_imgTag.onload = uploadimg; // setting a function, onloading this variable
+	img_imgTag.src = img_image;   // load image
+}
 
-      color = document.getElementById("color").value;
-      width_of_line = document.getElementById("width_of_line").value;
+function uploadimg() {
 
+	ctx.drawImage(img_imgTag, img_x, img_y, img_width, img_height);
+    canvas = document.getElementById('myCanvas');
+	ctx = canvas.geContext("2d");
 
-      last_position_of_x = e.touches[0].clientX - canvas.offsetLeft;
-      last_position_of_y = e.touches[0].clientY - canvas.offsetTop;
-    }
-    canvas.addEventListener("touchmove", my_touchmove);
-    
+function my_keydown(e)
+{
+	keyPressed = e.keyCode;
+	console.log(keyPressed);
+	
+		if((keyPressed >=97 && keyPressed<=122)|| (keyPressed >=65 && keyPressed<=90))
+		window.addEventListener("keydown", my_kedown);
+	else{
+		otherkey();
+		document.getElementById("d1").innerHTML="You pressed symbol or other key";
+	}
+}
 
-    function my_touchmove(e)
-    {
+function aplhabetkey()
+{        img_image="Alpkey.png";
 
-        console.log("my_touchMove");
-        current_position_of_touch_x = e.touches[0].clientY - canvas.offsetLeft;
-        current_position_of_touch_y = e.touches[0].clientY - canvas.offsetTop;
-
-
-        ctx.beginPath();
-        ctx.strokeStyle = color
+      add();
+}
+function numberkey()
+{
+	
+}
+function arrowkey()
+{
+}
+function specialkey()
+{
+	
+}
+function otherkey()
+{
+	img_image="otherkey.png";
+	add();
+}
+	
